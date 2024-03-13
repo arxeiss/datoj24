@@ -16,6 +16,7 @@ class ExportPolicy
      */
     public function list(User $user): bool
     {
+        return false;
         $listRule = $this->fullTerm($user) || $this->overUnderPaid($user);
 
         return $listRule;
@@ -26,6 +27,7 @@ class ExportPolicy
      */
     public function fullTerm(User $user): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 
@@ -34,6 +36,7 @@ class ExportPolicy
      */
     public function overUnderPaid(User $user): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 }

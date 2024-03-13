@@ -17,6 +17,7 @@ class CategoryPolicy
      */
     public function list(User $user): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 
@@ -25,6 +26,7 @@ class CategoryPolicy
      */
     public function view(User $user, Category $category): bool
     {
+        return false;
         return false; // Not used actually ever
     }
 
@@ -33,6 +35,7 @@ class CategoryPolicy
      */
     public function create(User $user): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 
@@ -41,6 +44,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 
@@ -49,6 +53,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
+        return false;
         if (!$user->isAdminOrMore()) {
             return false;
         }

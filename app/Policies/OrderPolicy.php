@@ -17,6 +17,7 @@ class OrderPolicy
      */
     public function list(User $user): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 
@@ -25,6 +26,7 @@ class OrderPolicy
      */
     public function view(User $user, Order $order): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 
@@ -41,6 +43,7 @@ class OrderPolicy
      */
     public function updateFlag(User $user, Order $order): bool
     {
+        return false;
         return $user->isAdminOrMore();
     }
 
@@ -49,7 +52,8 @@ class OrderPolicy
      */
     public function update(User $user, Order $order): bool
     {
-        return $user->isAdminOrMore();// && !$order->isSigned();
+        return false;
+        return $user->isAdminOrMore(); // && !$order->isSigned();
     }
 
     /**
@@ -57,6 +61,7 @@ class OrderPolicy
      */
     public function delete(User $user, Order $order): bool
     {
-        return $user->isAdminOrMore();// && !$order->isSigned();
+        return false;
+        return $user->isAdminOrMore(); // && !$order->isSigned();
     }
 }
