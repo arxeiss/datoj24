@@ -17,7 +17,6 @@ class StudentPolicy
      */
     public function parentList(User $user): bool
     {
-        return false;
         return $user->isRoleParent();
     }
 
@@ -26,7 +25,6 @@ class StudentPolicy
      */
     public function list(User $user): bool
     {
-        return false;
         return $user->isAdminOrMore();
     }
 
@@ -35,7 +33,6 @@ class StudentPolicy
      */
     public function view(User $user, Student $student): bool
     {
-        return false;
         if ($user->isAdminOrMore()) {
             return true;
         }
@@ -48,7 +45,6 @@ class StudentPolicy
      */
     public function sendEmails(User $user, Student $student): bool
     {
-        return false;
         return $this->view($user, $student);
     }
 
@@ -57,7 +53,6 @@ class StudentPolicy
      */
     public function create(User $user): bool
     {
-        return false;
         return $user->isAdminOrMore() || $user->isRoleParent();
     }
 
@@ -66,7 +61,6 @@ class StudentPolicy
      */
     public function update(User $user, Student $student): bool
     {
-        return false;
         return $user->isAdminOrMore() || ($this->view($user, $student) && $student->isEditable());
     }
 
@@ -84,7 +78,6 @@ class StudentPolicy
      */
     public function cancel(User $user, Student $student): bool
     {
-        return false;
         return $user->isAdminOrMore();
     }
 
@@ -93,7 +86,6 @@ class StudentPolicy
      */
     public function addPayment(User $user, Student $student): bool
     {
-        return false;
         return $user->isAdminOrMore();
         // return $user->isRoleMaster();
     }
@@ -103,7 +95,6 @@ class StudentPolicy
      */
     public function certificateLogin(User $user, Student $student): bool
     {
-        return false;
         return !$student->canceled && $this->view($user, $student);
     }
 
@@ -112,7 +103,6 @@ class StudentPolicy
      */
     public function certificatePayment(User $user, Student $student): bool
     {
-        return false;
         return $this->certificateLogin($user, $student)
             && $student->price_to_pay <= 0;
     }
