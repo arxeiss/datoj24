@@ -17,7 +17,6 @@ class TermPolicy
      */
     public function list(User $user): bool
     {
-        return false;
         return $user->isAdminOrMore();
     }
 
@@ -26,7 +25,6 @@ class TermPolicy
      */
     public function listParent(User $user): bool
     {
-        return false;
         return $user->isRoleParent();
     }
 
@@ -35,7 +33,6 @@ class TermPolicy
      */
     public function view(User $user, Term $term): bool
     {
-        return false;
         return $user->isAdminOrMore();
     }
 
@@ -44,7 +41,6 @@ class TermPolicy
      */
     public function viewParent(User $user, Term $term): bool
     {
-        return false;
         return $user->isRoleParent() && $term->isPossibleLogin();
     }
 
@@ -53,7 +49,6 @@ class TermPolicy
      */
     public function viewDetails(User $user, Term $term): bool
     {
-        return false;
         return $user->isAdminOrMore();
     }
 
@@ -62,7 +57,6 @@ class TermPolicy
      */
     public function create(User $user): bool
     {
-        return false;
         return $user->isAdminOrMore();
     }
 
@@ -71,7 +65,6 @@ class TermPolicy
      */
     public function update(User $user, Term $term): bool
     {
-        return false;
         return $user->isAdminOrMore();
     }
 
@@ -80,7 +73,6 @@ class TermPolicy
      */
     public function delete(User $user, Term $term): bool
     {
-        return false;
         if ($user->isAdminOrMore()) {
             return (int)($term->students_count ?? $term->students()->canceled(false)->count()) === 0;
         }
